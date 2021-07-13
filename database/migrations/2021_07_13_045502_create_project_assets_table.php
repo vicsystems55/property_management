@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProgressReportsTable extends Migration
+class CreateProjectAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateProgressReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('progress_reports', function (Blueprint $table) {
+        Schema::create('project_assets', function (Blueprint $table) {
             $table->id();
+
             $table->bigInteger('project_id')->unsigned();
-            $table->bigInteger('project_stage_id')->unsigned();
-            $table->integer('percent')->unsigned();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('status')->default('pending');
-            $table->date('project_start_date');
-            $table->date('project_end_date');
+            $table->bigInteger('progress_report_id')->unsigned();
+            
+            $table->string('type');
+            
+            $table->string('asset_path');
+            
 
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('progress_report_id')->references('id')->on('progress_reports');
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreateProgressReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('progress_reports');
+        Schema::dropIfExists('project_assets');
     }
 }

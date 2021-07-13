@@ -19,18 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('user_code');
             $table->string('status');
-            $table->string('country');
-            $table->string('address');
+            $table->string('country')->nullalble();
+            $table->string('address')->nullalble();
             $table->string('role');
-            $table->string('phone');
+            $table->string('phone')->nullalble();
            
 
-            $table->string('nok_name');
-            $table->string('nok_address');
-            $table->string('nok_phone');
+            $table->string('nok_name')->nullable();
+            $table->string('nok_address')->nullable();
+            $table->string('nok_phone')->nullable();
 
            
-            $table->longText('bio');
+            $table->longText('bio')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

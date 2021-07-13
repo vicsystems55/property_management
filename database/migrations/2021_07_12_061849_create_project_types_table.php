@@ -15,6 +15,9 @@ class CreateProjectTypesTable extends Migration
     {
         Schema::create('project_types', function (Blueprint $table) {
             $table->id();
+            $table->string('project_type');
+            $table->string('description');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

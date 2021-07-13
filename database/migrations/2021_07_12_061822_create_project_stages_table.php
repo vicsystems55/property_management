@@ -15,6 +15,9 @@ class CreateProjectStagesTable extends Migration
     {
         Schema::create('project_stages', function (Blueprint $table) {
             $table->id();
+            $table->string('stage_name');
+            $table->string('description');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
