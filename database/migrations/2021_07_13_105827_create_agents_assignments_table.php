@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectStagesTable extends Migration
+class CreateAgentsAssignmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateProjectStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_stages', function (Blueprint $table) {
+        Schema::create('agents_assignments', function (Blueprint $table) {
             $table->id();
-            $table->string('stage_name');
-            $table->string('description');
+
+            $table->bigInteger('client_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned();
+
             $table->string('status')->default('active');
+
+            $table->foreign('client_id')->references('id')->on('users');
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ class CreateProjectStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_stages');
+        Schema::dropIfExists('agents_assignments');
     }
 }

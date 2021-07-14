@@ -84,68 +84,23 @@
             'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
             'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
         -->
-        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+        <div id="page-container" class="
+        sidebar-o 
+        sidebar-dark 
+        enable-page-overlay 
+        side-scroll 
+        page-header-fixed 
+
+        {{ (request()->is('user')) ? 'page-header-dark page-header-glass' : '' }}
+
+        {{ (request()->is('user/profile')) ? '' : '' }}
+        
+
+
+        main-content-narrow
+        ">
             <!-- Side Overlay-->
-            <aside id="side-overlay">
-                <!-- Side Header - Close Side Overlay -->
-                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <a class="content-header bg-body-light justify-content-center text-danger" data-toggle="layout" data-action="side_overlay_close" href="javascript:void(0)">
-                    <i class="fa fa-2x fa-times-circle"></i>
-                </a>
-                <!-- END Side Header - Close Side Overlay -->
-
-                <!-- Side Content -->
-                <form action="db_modern.html" method="POST" onsubmit="return false;">
-                    <div class="content-side">
-                        <div class="block pull-x">
-                            <!-- Personal -->
-                            <div class="block-content block-content-sm block-content-full bg-body-dark">
-                                <span class="text-uppercase font-size-sm font-w700">Personal</span>
-                            </div>
-                            <div class="block-content block-content-full">
-                                <div class="form-group">
-                                    <label for="so-profile-name">Name</label>
-                                    <input type="text" class="form-control form-control-alt" id="so-profile-name" name="so-profile-name" value="George Taylor">
-                                </div>
-                                <div class="form-group">
-                                    <label for="so-profile-email">Email</label>
-                                    <input type="email" class="form-control form-control-alt" id="so-profile-email" name="so-profile-email" value="g.taylor@example.com">
-                                </div>
-                            </div>
-                            <!-- END Personal -->
-
-                            <!-- Password Update -->
-                            <div class="block-content block-content-sm block-content-full bg-body-dark">
-                                <span class="text-uppercase font-size-sm font-w700">Password Update</span>
-                            </div>
-                            <div class="block-content block-content-full">
-                                <div class="form-group">
-                                    <label for="so-profile-password">Current Password</label>
-                                    <input type="password" class="form-control form-control-alt" id="so-profile-password" name="so-profile-password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="so-profile-new-password">New Password</label>
-                                    <input type="password" class="form-control form-control-alt" id="so-profile-new-password" name="so-profile-new-password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="so-profile-new-password-confirm">Confirm New Password</label>
-                                    <input type="password" class="form-control form-control-alt" id="so-profile-new-password-confirm" name="so-profile-new-password-confirm">
-                                </div>
-                            </div>
-                            <!-- END Password Update -->
-
-                            <!-- Submit -->
-                            <div class="block-content border-top">
-                                <button type="submit" class="btn btn-block btn-primary">
-                                    <i class="fa fa-fw fa-save mr-1"></i> Save
-                                </button>
-                            </div>
-                            <!-- END Submit -->
-                        </div>
-                    </div>
-                </form>
-                <!-- END Side Content -->
-            </aside>
+         
             <!-- END Side Overlay -->
 
             <!-- Sidebar -->
@@ -161,7 +116,7 @@
                 Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
             -->
 
-            {{-- @if (Auth::user()->role == 'client')
+            @if (Auth::user()->role == 'user')
 
             @include('inc.client_sidebar')
 
@@ -173,9 +128,9 @@
 
             @include('inc.admin_sidebar') 
                 
-            @endif --}}
+            @endif
 
-            @include('inc.agent_sidebar')
+            {{-- @include('inc.agent_sidebar') --}}
            
             <!-- END Sidebar -->
 
@@ -244,22 +199,17 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
                                 <div class="bg-primary rounded-top font-w600 text-white text-center p-3">
-                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar10.jpg" alt="">
+                                    <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{config('app.url')}}dashmix/assets/media/avatars/avatar10.jpg" alt="">
                                     <div class="pt-2">
-                                        <a class="text-white font-w600" href="be_pages_generic_profile.html">George Taylor</a>
+                                        <a class="text-white font-w600" href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
                                     </div>
                                 </div>
                                 <div class="p-2">
-                                    <a class="dropdown-item" href="be_pages_generic_profile.html">
+                                    <a class="dropdown-item" href="{{route('user.profile')}}">
                                         <i class="far fa-fw fa-user mr-1"></i> Profile
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
-                                        <span><i class="far fa-fw fa-envelope mr-1"></i> Inbox</span>
-                                        <span class="badge badge-primary">3</span>
-                                    </a>
-                                    <a class="dropdown-item" href="be_pages_generic_invoice.html">
-                                        <i class="far fa-fw fa-file-alt mr-1"></i> Invoices
-                                    </a>
+                                  
+                                  
                                     <div role="separator" class="dropdown-divider"></div>
 
                                     <!-- Toggle Side Overlay -->
@@ -270,7 +220,7 @@
                                     <!-- END Side Overlay -->
 
                                     <div role="separator" class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="op_auth_signin.html">
+                                    <a class="dropdown-item" href="{{route('logout')}}">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Sign Out
                                     </a>
                                 </div>

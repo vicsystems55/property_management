@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    redirect ('/login');
-});
+Route::get('/choose', 'ChooseRoleController@index')->name('choose');
+
+Route::get('/', 'ChooseRoleController@index')->name('choose');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::get('/my_works', function () {
     return view('my_works');
@@ -42,7 +44,7 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 Route::group(['middleware' => ['auth', 'admin'],  'prefix' => 'admin'], function(){
 
-    Route::get('/', 'AdminDashboardController@index')->name('admin.home');
+    Route::get('/', 'AdminDashboardController@home')->name('admin.home');
     Route::get('/members', 'AdminDashboardController@members')->name('admin.members');
     Route::get('/member/{member_code}', 'AdminDashboardController@member')->name('admin.member');
     Route::get('/requests', 'AdminDashboardController@requests')->name('admin.requests');
@@ -58,7 +60,7 @@ Route::group(['middleware' => ['auth', 'admin'],  'prefix' => 'admin'], function
 
 Route::group(['middleware' => ['auth', 'agent'],  'prefix' => 'agent'], function(){
 
-    Route::get('/', 'AgentDashboardController@index')->name('agent.home');
+    Route::get('/', 'AgentDashboardController@home')->name('agent.home');
     Route::get('/assignments', 'AgentDashboardController@assignments')->name('agent.assignments');
     Route::get('/profile', 'AgentDashboardController@profile')->name('agent.profile');
     Route::get('/notifications', 'AgentDashboardController@notifications')->name('agent.notifications');
@@ -70,7 +72,7 @@ Route::group(['middleware' => ['auth', 'agent'],  'prefix' => 'agent'], function
 
 Route::group(['middleware' => ['auth', 'user'],  'prefix' => 'user'], function(){
 
-    Route::get('/', 'ClientDashboardController@index')->name('user.home');
+    Route::get('/', 'ClientDashboardController@home')->name('user.home');
     Route::get('/profile', 'ClientDashboardController@profile')->name('user.profile');
     Route::get('/notifications', 'ClientDashboardController@notifications')->name('user.notifications');
     Route::get('/current_projects', 'ClientDashboardController@current_projects')->name('user.current_projects');

@@ -19,10 +19,17 @@
                     <!-- Sign In Form -->
                     <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
                     <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                    <form class="js-validation-signin" action="be_pages_auth_all.html" method="POST">
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p class="alert alert-warning">{{$error}}</p>
+                        @endforeach
+                    @endif
+
+                    <form class="js-validation-signin" action="{{route('login')}}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="login-username" name="login-username" placeholder="Username">
+                                <input type="text" class="form-control" id="login-username" name="email" placeholder="Email">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-user-circle"></i>
@@ -32,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password">
+                                <input type="password" class="form-control" id="login-password" name="password" placeholder="Password">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-asterisk"></i>
@@ -54,7 +61,16 @@
                                 <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
                             </button>
                         </div>
+
+                        <div class="form-group d-sm-flex justify-content-sm-between align-items-sm-center text-center text-sm-left">
+                           
+                            <div class="font-w600 font-size-sm mx-auto ">
+                                <a class="" href="{{route('register')}}">Dont have an account?</a>
+                            </div>
+                        </div>
+
                     </form>
+
                     <!-- END Sign In Form -->
                 </div>
                

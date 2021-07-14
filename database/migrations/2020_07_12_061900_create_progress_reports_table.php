@@ -13,6 +13,8 @@ class CreateProgressReportsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('progress_reports', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('project_id')->unsigned();
@@ -20,6 +22,7 @@ class CreateProgressReportsTable extends Migration
             $table->integer('percent')->unsigned();
             $table->date('start_date');
             $table->date('end_date');
+            $table->longText('note_from_agent');
             $table->string('status')->default('pending');
             $table->date('project_start_date');
             $table->date('project_end_date');
@@ -27,6 +30,8 @@ class CreateProgressReportsTable extends Migration
             $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -35,7 +40,9 @@ class CreateProgressReportsTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('progress_reports');
+        Schema::enableForeignKeyConstraints();
+        
     }
 }

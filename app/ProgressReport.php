@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProgressReport extends Model
 {
     //
+
+    protected $guarded = [];
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-image" style="background-image: url('{{config('app.url')}}dashmix/assets/media/photos/homez.jpg');">
-    <div class="row no-gutters justify-content-center bg-black-75">
+    <div class="row no-gutters justify-content-center bg-primary-dark-op">
         <div class="hero-static col-sm-8 col-md-6 col-xl-4 d-flex align-items-center p-2 px-sm-0">
             <!-- Sign Up Block -->
             <div class="block block-transparent block-rounded w-100 mb-0 overflow-hidden">
@@ -19,10 +19,17 @@
                     <!-- Sign Up Form -->
                     <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _js/pages/op_auth_signup.js) -->
                     <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                    <form class="js-validation-signup" action="be_pages_auth_all.html" method="POST">
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p class="alert alert-warning">{{$error}}</p>
+                        @endforeach
+                    @endif
+
+                    <form class="js-validation-signup" action="{{route('register')}}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="signup-username" name="signup-username" placeholder="Username">
+                                <input type="text" class="form-control" id="signup-username" name="name" placeholder="Name">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-user-circle"></i>
@@ -32,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="email" class="form-control" id="signup-email" name="signup-email" placeholder="Email">
+                                <input type="email" class="form-control" id="signup-email" name="email" placeholder="Email">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-envelope-open"></i>
@@ -42,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" class="form-control" id="signup-password" name="signup-password" placeholder="Password">
+                                <input type="password" class="form-control" id="signup-password" name="password" placeholder="Password">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-asterisk"></i>
@@ -52,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" class="form-control" id="signup-password-confirm" name="signup-password-confirm" placeholder="Password Confirm">
+                                <input type="password" class="form-control" id="signup-password-confirm" name="password_confirmation" placeholder="Password Confirm">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="fa fa-asterisk"></i>
@@ -60,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group text-center">
+                        <div class="form-group ">
                             <a class="font-w600 font-size-sm" href="#" data-toggle="modal" data-target="#modal-terms">Terms &amp; Conditions</a>
                             <div class="custom-control custom-checkbox custom-control-primary">
                                 <input type="checkbox" class="custom-control-input" id="signup-terms" name="signup-terms">
@@ -72,6 +79,20 @@
                                 <i class="fa fa-fw fa-plus mr-1"></i> Sign Up
                             </button>
                         </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-block btn-hero-danger">
+                                <i class="fa fa-fw fa-plus mr-1"></i> Sign Up with Google
+                            </button>
+                        </div>
+
+                        <div class="form-group d-sm-flex justify-content-sm-between align-items-sm-center text-center text-sm-left">
+                           
+                            <div class="font-w600 font-size-sm mx-auto ">
+                                <a class="" href="{{route('login')}}">Already have an account?</a>
+                            </div>
+                        </div>
+
                     </form>
                     <!-- END Sign Up Form -->
                 </div>

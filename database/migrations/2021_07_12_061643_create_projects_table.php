@@ -13,6 +13,7 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('project_name');
@@ -33,6 +34,7 @@ class CreateProjectsTable extends Migration
             $table->foreign('client_id')->references('id')->on('users');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -42,6 +44,10 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('projects');
+        Schema::enableForeignKeyConstraints();
+        
+        
     }
 }
