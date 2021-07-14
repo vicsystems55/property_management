@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth', 'user'],  'prefix' => 'user'], function()
     Route::get('/profile', 'ClientDashboardController@profile')->name('user.profile');
     Route::get('/notifications', 'ClientDashboardController@notifications')->name('user.notifications');
     Route::get('/current_projects', 'ClientDashboardController@current_projects')->name('user.current_projects');
+    Route::get('/create_project', 'ClientDashboardController@create_project')->name('user.create_project');
     Route::get('/completed_projects', 'ClientDashboardController@completed_projects')->name('user.completed_projects');
     Route::get('/paused_projects', 'ClientDashboardController@paused_projects')->name('user.paused_projects');
     Route::get('/terminated_projects', 'ClientDashboardController@terminated_projects')->name('user.terminated_projects');

@@ -25,6 +25,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="assets/media/favicons/apple-touch-icon-180x180.png">
         <!-- END Icons -->
 
+        @yield('page-styles')
+
         <!-- Stylesheets -->
         <!-- Fonts and Dashmix framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
@@ -277,7 +279,7 @@
                 <div class="content py-0">
                     <div class="row font-size-sm">
                         <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="https://1.envato.market/ydb" target="_blank">vicSystems</a>
+                            Developed <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="https://vicsystems.com.ng" target="_blank">vicSystems</a>
                         </div>
                         {{-- <div class="col-sm-6 order-sm-1 text-center text-sm-left">
                             <a class="font-w600" href="https://1.envato.market/r6y" target="_blank">Dashmix 3.2</a> &copy; <span data-toggle="year-copy"></span>
@@ -320,5 +322,7 @@
 
         <!-- Page JS Helpers (jQuery Sparkline plugin) -->
         <script>jQuery(function(){Dashmix.helpers('sparkline');});</script>
+
+        @yield('page-script')
     </body>
 </html>
