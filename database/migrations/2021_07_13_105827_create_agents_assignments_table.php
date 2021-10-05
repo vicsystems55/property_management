@@ -16,12 +16,12 @@ class CreateAgentsAssignmentsTable extends Migration
         Schema::create('agents_assignments', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('client_id')->unsigned();
+            $table->bigInteger('agent_id')->unsigned();
             $table->bigInteger('project_id')->unsigned();
 
             $table->string('status')->default('active');
 
-            $table->foreign('client_id')->references('id')->on('users');
+            $table->foreign('agent_id')->references('id')->on('users');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });

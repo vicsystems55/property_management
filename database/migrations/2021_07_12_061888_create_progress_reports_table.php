@@ -19,9 +19,12 @@ class CreateProgressReportsTable extends Migration
             $table->id();
             $table->bigInteger('project_id')->unsigned();
             $table->bigInteger('project_stage_id')->unsigned();
-            $table->integer('percent')->unsigned();
+            $table->string('report_code');
+            $table->integer('percent_done')->unsigned();
+
             $table->date('start_date');
             $table->date('end_date');
+
             $table->longText('note_from_agent');
             $table->string('status')->default('pending');
             $table->date('project_start_date');

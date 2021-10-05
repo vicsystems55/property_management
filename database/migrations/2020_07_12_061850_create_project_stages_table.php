@@ -15,9 +15,15 @@ class CreateProjectStagesTable extends Migration
     {
         Schema::create('project_stages', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('project_type_id')->unsigned();
+
             $table->string('stage_name');
             $table->longText('description');
+            $table->string('image')->nullalbe();
+            $table->integer('percent_allocation')->nullalbe();
             $table->string('status')->default('active');
+
+            $table->foreign('project_type_id')->references('id')->on('project_types');            
             $table->timestamps();
         });
     }

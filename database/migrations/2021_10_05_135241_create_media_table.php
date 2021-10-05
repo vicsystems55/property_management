@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectTypesTable extends Migration
+class CreateMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateProjectTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_types', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('progress_report_id')->unsigned();
+            $table->string('media_type');
             $table->string('name');
-            $table->string('category');
-            $table->string('featured_image');
-            $table->longText('description');
-            $table->string('status')->default('active');
+            $table->string('file_path');
+            $table->string('status');
+            $table->foreign('progress_report_id')->references('id')->on('progress_reports');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateProjectTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_types');
+        Schema::dropIfExists('media');
     }
 }

@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth', 'admin'],  'prefix' => 'admin'], function
     Route::get('/support', 'AdminDashboardController@support')->name('admin.support');
     Route::get('/settings', 'AdminDashboardController@settings')->name('admin.settings');
 
+    Route::get('/project_types', 'AdminDashboardController@project_types')->name('admin.project_types');
+
 });
 
 
@@ -64,6 +66,8 @@ Route::group(['middleware' => ['auth', 'agent'],  'prefix' => 'agent'], function
     Route::get('/assignments', 'AgentDashboardController@assignments')->name('agent.assignments');
     Route::get('/profile', 'AgentDashboardController@profile')->name('agent.profile');
     Route::get('/notifications', 'AgentDashboardController@notifications')->name('agent.notifications');
+
+    Route::get('/project_types', 'AgentDashboardController@project_types')->name('agent.project_types');
 
 });
 
@@ -82,6 +86,9 @@ Route::group(['middleware' => ['auth', 'user'],  'prefix' => 'user'], function()
     Route::get('/terminated_projects', 'ClientDashboardController@terminated_projects')->name('user.terminated_projects');
 
     Route::get('/project_details/{type}/{project_code}', 'ClientDashboardController@project_details')->name('user.project_details');
+
+    Route::get('/project_types', 'ClientDashboardController@project_types')->name('user.project_types');
+
 
 });
 

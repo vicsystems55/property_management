@@ -1,4 +1,4 @@
-<nav id="sidebar" aria-label="Main Navigation">
+<nav id="sidebar" aria-label="Main Navigation" >
     <!-- Side Header (mini Sidebar mode) -->
     <div class="smini-visible-block">
         <div class="content-header">
@@ -48,6 +48,14 @@
                     <a class="nav-main-link active" href="{{route('admin.home')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Dashboard</span>
+                       
+                    </a>
+                </li>
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link active" href="{{route('admin.project_types')}}">
+                        <i class="nav-main-link-icon fa fa-chart-bar"></i>
+                        <span class="nav-main-link-name">Project Types</span>
                        
                     </a>
                 </li>

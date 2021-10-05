@@ -51,6 +51,15 @@
                        
                     </a>
                 </li>
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link active" href="{{route('user.project_types')}}">
+                        <i class="nav-main-link-icon fa fa-chart-bar"></i>
+                        <span class="nav-main-link-name">Project Types</span>
+                       
+                    </a>
+                </li>
+
                 <li class="nav-main-heading">Manage</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
