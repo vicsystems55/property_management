@@ -1,4 +1,4 @@
-<nav id="sidebar" aria-label="Main Navigation" class="bg-primary text-white">
+<nav id="sidebar" aria-label="Main Navigation" class=" text-white">
     <!-- Side Header (mini Sidebar mode) -->
     <div class="smini-visible-block">
         <div class="content-header">
@@ -45,7 +45,7 @@
         <div class="content-side mt-5">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('agent.home')}}">
+                    <a class="nav-main-link {{request()->is('agent')?'active':''}}" href="{{route('agent.home')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                        
@@ -54,16 +54,55 @@
 
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('agent.project_types')}}">
+                    <a class="nav-main-link {{request()->is('agent/project_types')?'active':''}}" href="{{route('agent.project_types')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Project Types</span>
                        
                     </a>
                 </li>
 
+                <li class="nav-main-heading">Manage</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-briefcase"></i>
+                        <span class="nav-main-link-name">Projects</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('agent/ongoing_projects')?'active':''}} " href="{{route('agent.ongoing_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Running Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('agent/completed_projects')?'active':''}}" href="{{route('agent.completed_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Completed Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('agent/paused_projects')?'active':''}}" href="{{route('agent.paused_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Paused Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('agent/terminated_projects')?'active':''}}" href="{{route('agent.terminated_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Terminated Projects</span>
+                            </a>
+                        </li>
+
+                       
+                    </ul>
+                </li>
+
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{route('agent.assignments')}}l">
+                    <a class="nav-main-link {{request()->is('agent/assignment')?'active':''}}" href="{{route('agent.assignments')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Assignments</span>
                        
@@ -71,7 +110,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{'agent.history'}}">
+                    <a class="nav-main-link {{request()->is('agent/history')?'active':''}}" href="{{'agent.history'}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">History</span>
                        
@@ -79,7 +118,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="db_modern.html">
+                    <a class="nav-main-link {{request()->is('agent/profile')?'active':''}}" href="">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Profile</span>
                        

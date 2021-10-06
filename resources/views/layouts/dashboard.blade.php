@@ -162,26 +162,34 @@
                     <div>
                         <!-- Notifications Dropdown -->
                         <div class="dropdown d-inline-block">
+                            <?php
+
+                                $notifications = App\Notification::where('user_id', Auth::user()->id)->where('status', 'unread')->latest()->get();
+
+                            ?>
                             <button type="button" class="btn btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-fw fa-flag"></i>
-                                <span class="badge badge-primary badge-pill">3</span>
+                                <i class="far fa-fw fa-bell"></i>
+                                <span class="badge badge-primary badge-pill  {{$notifications->count()==0?'d-none':''}} ">{{$notifications->count()}}</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                                 <div class="bg-primary rounded-top font-w600 text-white text-center p-3">
                                     Notifications
                                 </div>
                                 <ul class="nav-items my-2">
+                                    @foreach ($notifications as $notification)
                                     <li>
                                         <a class="text-dark media py-2" href="javascript:void(0)">
                                             <div class="mx-3">
                                                 <i class="fa fa-fw fa-check-circle text-success"></i>
                                             </div>
                                             <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">App was updated to v5.6!</div>
+                                                <div class="font-w600">{{$notification->title}}</div>
                                                 <div class="text-muted font-italic">3 min ago</div>
                                             </div>
                                         </a>
                                     </li>
+                                    @endforeach
+                                   
                                    
                                 </ul>
                                 <div class="p-2 border-top">
@@ -279,7 +287,7 @@
                 <div class="content py-0">
                     <div class="row font-size-sm">
                         <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
-                            Developed <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="https://vicsystems.com.ng" target="_blank">vicSystems</a>
+                            Developed  by <a class="font-w600" href="https://vicsystems.com.ng" target="_blank">vicSystems</a>
                         </div>
                         {{-- <div class="col-sm-6 order-sm-1 text-center text-sm-left">
                             <a class="font-w600" href="https://1.envato.market/r6y" target="_blank">Dashmix 3.2</a> &copy; <span data-toggle="year-copy"></span>

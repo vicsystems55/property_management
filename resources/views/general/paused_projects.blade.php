@@ -1,0 +1,56 @@
+@extends('layouts.dashboard')
+
+@section('content')
+
+<main id="main-container">
+    <!-- Quick Menu -->
+    {{-- <div class="bg-body-dark">
+        <div class="content">
+            
+        </div>
+    </div> --}}
+    <!-- END Quick Menu -->
+
+    <!-- Page Content -->
+    <div class="content">
+
+        <h4>Paused Projects</h4>
+
+        <div class="card table-responisive table-striped">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Project Name</th>
+                            <th>Project Code</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($projects as $project)
+
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$project->project_name}}</td>
+                            <td>{{$project->project_code}}</td>
+                            <td>{{$project->created_at->format('D M, Y')}}</td>
+                            <td>
+                                <a href="{{route(Auth::user()->role.'.project', $project->project_code)}}" class="btn btn-primary btn-sm shadow">view</a>
+                            </td>
+                        </tr>
+                            
+                        @endforeach
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+       
+     
+    </div>
+    <!-- END Page Content -->
+</main>
+
+@endsection

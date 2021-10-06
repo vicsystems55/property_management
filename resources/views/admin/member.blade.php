@@ -21,15 +21,13 @@
                     <div class="content content-full">
                         <div class="py-5 text-center">
                             <a class="img-link" href="be_pages_generic_profile.html">
-                                <img class="img-avatar img-avatar96 img-avatar-thumb" src="assets/media/avatars/avatar10.jpg" alt="">
+                                <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('avatars')}}/{{$user->avatar}}" alt="">
                             </a>
-                            <h1 class="font-w700 my-2 text-white">Edit Account</h1>
+                            <h1 class="font-w700 my-2 text-white">{{$user->name}}</h1>
                             <h2 class="h4 font-w700 text-white-75">
-                                George Taylor
+                                {{$user->role}}
                             </h2>
-                            <a class="btn btn-hero-dark" href="be_pages_generic_profile.html">
-                                <i class="fa fa-fw fa-arrow-left"></i> Back to Profile
-                            </a>
+                      
                         </div>
                     </div>
                 </div>
@@ -118,120 +116,12 @@
                             </div>
                             <!-- END Change Password -->
 
-                            <!-- Connections -->
-                            <h2 class="content-heading pt-0">
-                                <i class="fa fa-fw fa-share-alt text-muted mr-1"></i> Connections
-                            </h2>
-                            <div class="row push">
-                                <div class="col-lg-4">
-                                    <p class="text-muted">
-                                        You can connect your account to third party networks to get extra features.
-                                    </p>
-                                </div>
-                                <div class="col-lg-8 col-xl-7">
-                                    <div class="form-group row">
-                                        <div class="col-sm-10 col-md-8 col-xl-6">
-                                            <a class="btn btn-block btn-alt-danger text-left" href="javascript:void(0)">
-                                                <i class="fab fa-fw fa-google opacity-50 mr-1"></i> Connect to Google
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10 col-md-8 col-xl-6">
-                                            <a class="btn btn-block btn-alt-info text-left" href="javascript:void(0)">
-                                                <i class="fab fa-fw fa-twitter opacity-50 mr-1"></i> Connect to Twitter
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10 col-md-8 col-xl-6">
-                                            <a class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                                <span>
-                                                    <i class="fab fa-fw fa-facebook mr-1"></i> John Doe
-                                                </span>
-                                                <i class="fa fa-fw fa-check mr-1"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
-                                            <a class="btn btn-sm btn-light btn-rounded" href="javascript:void(0)">
-                                                <i class="fa fa-fw fa-pencil-alt mr-1"></i> Edit Facebook Connection
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10 col-md-8 col-xl-6">
-                                            <a class="btn btn-block btn-alt-warning bg-transparent d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                                <span>
-                                                    <i class="fab fa-fw fa-instagram mr-1"></i> @john_doe
-                                                </span>
-                                                <i class="fa fa-fw fa-check mr-1"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
-                                            <a class="btn btn-sm btn-light btn-rounded" href="javascript:void(0)">
-                                                <i class="fa fa-fw fa-pencil-alt mr-1"></i> Edit Instagram Connection
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Connections -->
-
-                            <!-- Billing Information -->
-                            <h2 class="content-heading pt-0">
-                                <i class="fab fa-fw fa-paypal text-muted mr-1"></i> Billing Information
-                            </h2>
-                            <div class="row push">
-                                <div class="col-lg-4">
-                                    <p class="text-muted">
-                                        Your billing information is never shown to other users and only used for creating your invoices.
-                                    </p>
-                                </div>
-                                <div class="col-lg-8 col-xl-5">
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-company-name">Company Name (Optional)</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-company-name" name="dm-profile-edit-company-name">
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-6">
-                                            <label for="dm-profile-edit-firstname">Firstname</label>
-                                            <input type="text" class="form-control" id="dm-profile-edit-firstname" name="dm-profile-edit-firstname">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="dm-profile-edit-lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="dm-profile-edit-lastname" name="dm-profile-edit-lastname">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-street-1">Street Address 1</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-street-1" name="dm-profile-edit-street-1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-street-2">Street Address 2</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-street-2" name="dm-profile-edit-street-2">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-city">City</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-city" name="dm-profile-edit-city">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-postal">Postal code</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-postal" name="dm-profile-edit-postal">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dm-profile-edit-vat">VAT Number</label>
-                                        <input type="text" class="form-control" id="dm-profile-edit-vat" name="dm-profile-edit-vat" value="EA00000000" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Billing Information -->
-
                             <!-- Submit -->
                             <div class="row push">
                                 <div class="col-lg-8 col-xl-5 offset-lg-4">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-check-circle mr-1"></i> Update Profile
+                                            <i class="fa fa-check-circle mr-1"></i>Lock Account
                                         </button>
                                     </div>
                                 </div>

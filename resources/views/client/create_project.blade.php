@@ -27,42 +27,56 @@
 
         <div class="card col-md-10 mx-auto">
             <div class="card-body">
-                <h4>Submit Request</h4>
-                <form action="" method="post">
+                @if(Session::has('message'))
+                    <p class="alert alert-info">{{ Session::get('message') }}</p>
+                @endif
+
+                
+                <form action="{{route('create_project')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="">Project Title:</label>
-                        <input type="text" class="form-control" placeholder="Create a project title">
+                        <input type="text" name="project_name" class="form-control" placeholder="Create a project title">
+                            @error('project_name')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                     </div>
                     <div class="form-group">
                         <label for="">Start Date:</label>
-                        <input type="text" class="js-flatpickr form-control bg-white" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
+                        <input type="text" name="start_date" class="js-flatpickr form-control bg-white" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
 
                     </div>
 
                     <div class="form-group">
                         <label for="">End Date:</label>
-                        <input type="text" class="js-flatpickr form-control bg-white" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
+                        <input type="text" name="end_date" class="js-flatpickr form-control bg-white" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
 
                     </div>
-
+            
                     <div class="form-group">
                         <label for="">Project Type:</label>
-                            <select name="" id="" class="form-control">
+                            <select name="project_type_id" id="" class="form-control">
                                 <option value="">--Select Project Type--</option>
-                                <option value="Bungalow">Bungalow</option>
+                                @foreach ($project_types as $type)
+                                    
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
+                                
                             </select>
                     </div>
 
                     <div class="form-group">
                         <label for="">Enter Location:</label>
-                        <input type="text" class="form-control" placeholder="Where will the building be located">
+                        <input type="text" name="location" class="form-control" placeholder="Where will the building be located">
 
                     </div>
 
                     <div class="form-group">
                         <label for="">Budget:</label>
-                        <input type="text" class="js-rangeslider" id="example-rangeslider8" name="example-rangeslider8" data-type="double" data-grid="true" data-min="0" data-max="10000" data-from="2500" data-to="7500" data-prefix="$">
+                        <input type="text" name="budget" class="js-rangeslider" id="example-rangeslider8"  data-type="double" data-grid="true" data-min="0" data-max="10000" data-from="2500" data-to="7500" data-prefix="$">
 
                     </div>
 

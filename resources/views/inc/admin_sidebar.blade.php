@@ -45,7 +45,7 @@
         <div class="content-side mt-5">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('admin.home')}}">
+                    <a class="nav-main-link {{request()->is('admin')?'active':''}}" href="{{route('admin.home')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                        
@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('admin.project_types')}}">
+                    <a class="nav-main-link {{request()->is('admin/project_types')?'active':''}}" href="{{route('admin.project_types')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Project Types</span>
                        
@@ -61,23 +61,55 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{route('admin.members')}}">
+                    <a class="nav-main-link {{request()->is('admin/members')?'active':''}}" href="{{route('admin.members')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Members</span>
                        
                     </a>
                 </li>
-
+                <li class="nav-main-heading">Manage</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{route('admin.requests')}}">
-                        <i class="nav-main-link-icon fa fa-chart-bar"></i>
-                        <span class="nav-main-link-name">Requests</span>
-                       
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-briefcase"></i>
+                        <span class="nav-main-link-name">Projects</span>
                     </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('admin/ongoing_projects')?'active':''}} " href="{{route('admin.ongoing_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Running Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('admin/completed_projects')?'active':''}}" href="{{route('admin.completed_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Completed Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('admin/paused_projects')?'active':''}}" href="{{route('admin.paused_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Paused Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('admin/terminated_projects')?'active':''}}" href="{{route('admin.terminated_projects')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Terminated Projects</span>
+                            </a>
+                        </li>
+
+
+                       
+                    </ul>
                 </li>
 
+
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{route('admin.notifications')}}">
+                    <a class="nav-main-link {{request()->is('admin/notifications')?'active':''}}" href="{{route('admin.notifications')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Notifications</span>
                        
@@ -85,7 +117,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link " href="{{route('admin.settings')}}">
+                    <a class="nav-main-link {{request()->is('admin/settings')?'active':''}}" href="{{route('admin.settings')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Settings</span>
                        

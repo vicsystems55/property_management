@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('address')->nullable();
             $table->string('role')->default('user');
+            $table->string('avatar')->default('default.png');
             $table->string('phone')->nullable();
            
 

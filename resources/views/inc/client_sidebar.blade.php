@@ -45,7 +45,7 @@
         <div class="content-side mt-5">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('user.home')}}">
+                    <a class="nav-main-link {{request()->is('user')?'active':''}}" href="{{route('user.home')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                        
@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('user.project_types')}}">
+                    <a class="nav-main-link {{request()->is('user/project_types')?'active':''}}" href="{{route('user.project_types')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Project Types</span>
                        
@@ -64,44 +64,56 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon fa fa-briefcase"></i>
-                        <span class="nav-main-link-name">Projects</span>
+                        <span class="nav-main-link-name">My Projects</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="{{route('user.current_projects')}}">
+                            <a class="nav-main-link {{request()->is('user/ongoing_projects')?'active':''}} " href="{{route('user.ongoing_projects')}}">
                                 <i class="nav-main-link-icon fa fa-plus"></i>
                                 <span class="nav-main-link-name">Running Projects</span>
                             </a>
                         </li>
 
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="{{route('user.completed_projects')}}">
+                            <a class="nav-main-link {{request()->is('user/completed_projects')?'active':''}}" href="{{route('user.completed_projects')}}">
                                 <i class="nav-main-link-icon fa fa-plus"></i>
                                 <span class="nav-main-link-name">Completed Projects</span>
                             </a>
                         </li>
 
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="{{route('user.paused_projects')}}">
+                            <a class="nav-main-link {{request()->is('user/paused_projects')?'active':''}}" href="{{route('user.paused_projects')}}">
                                 <i class="nav-main-link-icon fa fa-plus"></i>
                                 <span class="nav-main-link-name">Paused Projects</span>
                             </a>
                         </li>
 
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="{{route('user.terminated_projects')}}">
+                            <a class="nav-main-link {{request()->is('user/terminated_projects')?'active':''}}" href="{{route('user.terminated_projects')}}">
                                 <i class="nav-main-link-icon fa fa-plus"></i>
                                 <span class="nav-main-link-name">Terminated Projects</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{request()->is('user/create_project')?'active':''}}" href="{{route('user.create_project')}}">
+                                <i class="nav-main-link-icon fa fa-plus"></i>
+                                <span class="nav-main-link-name">Create Project</span>
                             </a>
                         </li>
                        
                     </ul>
                 </li>
+                <?php
+
+                $notifications = App\Notification::where('user_id', Auth::user()->id)->where('status', 'unread')->latest()->get();
+
+            ?>
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="{{route('user.notifications')}}">
+                    <a class="nav-main-link {{request()->is('user/notifications')?'active':''}}" href="{{route('user.notifications')}}">
                         <i class="nav-main-link-icon fa fa-chart-bar"></i>
                         <span class="nav-main-link-name">Notifications</span>
-                        <span class="nav-main-link-badge badge badge-pill badge-primary">3</span>
+                        <span class="nav-main-link-badge badge badge-pill badge-primary">{{$notifications->count()}}</span>
                     </a>
                 </li>
              
@@ -128,7 +140,7 @@
               
                 <li class="nav-main-heading">Settings</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{route('user.profile')}}">
+                    <a class="nav-main-link {{request()->is('user/profile')?'active':''}}" href="{{route('user.profile')}}">
                         <i class="nav-main-link-icon fa fa-house-user"></i>
                         <span class="nav-main-link-name">Profile</span>
                         {{--  --}}
